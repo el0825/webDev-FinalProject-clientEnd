@@ -19,6 +19,32 @@ export const fetchAllCampusesThunk = () => async (dispatch) => {  // The THUNK
     console.error(err);
   }
 };
+// THUNK: Delete a campus
+export const deleteCampusThunk = (campusId) => async (dispatch) => {
+  try {
+    // API "delete" call to delete campus (based on "campusId") from database
+    await axios.delete(`/api/campuses/${campusId}`);  
+
+    // Delete successful so change state with dispatch
+    dispatch(ac.deleteCampus(campusId));
+  } catch (error) {
+    console.error("Error deleting campus:", error);
+  }
+};
+
+// Add Campus
+export const addCampusThunk = (campus) => async (dispatch) => {
+  try {
+    // POST to backend to create new campus
+    let res = await axios.post(`/api/campuses`, campus);
+    // Update Redux store
+    dispatch(ac.addCampus(res.data));
+    return res.data;   // so container can redirect if it wants
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 
 // Single Campus
 // THUNK CREATOR:
