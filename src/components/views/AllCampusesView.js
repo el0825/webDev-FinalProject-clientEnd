@@ -6,6 +6,7 @@ It constructs a React component to display all campuses.
 ================================================== */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+const DEFAULT_CAMPUS_IMAGE = "https://via.placeholder.com/200x120?text=Campus+Image";
 
 const AllCampusesView = (props) => {
   // If there is no campus, display a message.
@@ -33,6 +34,12 @@ const AllCampusesView = (props) => {
           <Link to={`/campus/${campus.id}`}>
             <h2>{campus.name}</h2>
           </Link>
+
+          {/* ✅ Campus image (real or default) */}
+          <img
+            src={campus.imageUrl || DEFAULT_CAMPUS_IMAGE}
+            alt={`${campus.name} campus`}
+          />
           <h4>campus id: {campus.id}</h4>
           <p>{campus.address}</p>
           <p>{campus.description}</p>
