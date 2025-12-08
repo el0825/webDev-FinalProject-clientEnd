@@ -44,6 +44,17 @@ export const addCampusThunk = (campus) => async (dispatch) => {
     console.error(err);
   }
 };
+// Edit Campus
+export const editCampusThunk = (campus) => async (dispatch) => {
+  try {
+    // API "put" call to update campus in database
+    let res = await axios.put(`/api/campuses/${campus.id}`, campus);
+    // Update successful so change state with dispatch
+    dispatch(ac.editCampus(res.data));
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 
 // Single Campus
