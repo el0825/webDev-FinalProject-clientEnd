@@ -7,6 +7,7 @@ the page to add a new campus.
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 // Create styling for the input form
 const useStyles = makeStyles(() => ({
@@ -92,6 +93,10 @@ const AddCampusView = (props) => {
       </div>
     </div>
   );
+};
+AddCampusView.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default AddCampusView;
