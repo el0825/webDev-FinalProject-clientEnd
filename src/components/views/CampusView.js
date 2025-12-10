@@ -31,6 +31,8 @@ const CampusView = (props) => {
       />
       <p>{campus.address}</p>
       <p>{campus.description}</p>
+      
+
      {/* If no students, show a helpful message */}
       {students.length === 0 ? (
         <p>No students are enrolled at this campus.</p>
