@@ -44,6 +44,10 @@ const fullName = `${student.firstname} ${student.lastname}`;
       ) : (
         <p>This student is not enrolled at any campus.</p>
       )}
+      {/* Edit Student Button */}
+      <Link to={`/student/${student.id}/edit`}>
+        <button>Edit Student</button>
+      </Link>
     </div>
   );
 };
@@ -57,6 +61,7 @@ StudentView.propTypes = {
     imageUrl: PropTypes.string,
     gpa: PropTypes.number,
     campus: PropTypes.object,
+    name: PropTypes.string,
   }),
 };
 
