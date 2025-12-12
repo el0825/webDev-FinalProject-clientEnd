@@ -31,7 +31,11 @@ const CampusView = (props) => {
       />
       <p>{campus.address}</p>
       <p>{campus.description}</p>
-      
+
+      {/* Edit Campus */}
+      <Link to={`/edit-campus/${campus.id}`}>
+        <button>Edit Campus</button>
+      </Link>
 
      {/* If no students, show a helpful message */}
       {students.length === 0 ? (
