@@ -8,6 +8,9 @@ import PropTypes from "prop-types";
 const EditStudentView = (props) => {
   const {student, formValues, handleChange, handleSubmit } = props;
 
+  if (!student || !student.id) {
+    return <div>Loading student...</div>;
+  }
 
   return (
     <div>

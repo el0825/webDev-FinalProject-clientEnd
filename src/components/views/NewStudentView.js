@@ -35,7 +35,7 @@ const useStyles = makeStyles( () => ({
 }));
 
 const NewStudentView = (props) => {
-  const {handleChange, handleSubmit } = props;
+  const {handleChange, handleSubmit, errorMsg } = props;
   const classes = useStyles();
 
   // Render a New Student view with an input form
@@ -52,12 +52,18 @@ const NewStudentView = (props) => {
           </div>
           <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
             <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
-            <input type="text" name="firstname" onChange ={(e) => handleChange(e)} />
+            <input type="text" name="firstname" onChange ={(e) => handleChange(e)}
+            required
+            minLength= "2"
+            pattern="[A-Za-z ]+" />
             <br/>
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Last Name: </label>
-            <input type="text" name="lastname" onChange={(e) => handleChange(e)} />
+            <input type="text" name="lastname" onChange={(e) => handleChange(e)} 
+            required
+            minLength = "2"
+            pattern="[A-Za-z ]+"/>
             <br/>
             <br/>
 
@@ -99,6 +105,12 @@ const NewStudentView = (props) => {
             <input type="text" name="campusId" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
+
+            {errorMsg && (
+              <h4 style={{ color: 'red', fontWeight: 'bold' }}>
+                {errorMsg}
+              </h4>
+            )}
 
             <Button variant="contained" color="primary" type="submit">
               Submit
