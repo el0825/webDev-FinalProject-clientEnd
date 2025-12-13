@@ -28,10 +28,16 @@ const fullName = `${student.firstname} ${student.lastname}`;
       <img
         src={student.imageUrl || DEFAULT_STUDENT_IMAGE}
         alt={fullName}
+        style={{ width: "200px", height: "200px" ,objectFit: 'cover'}}
       />
 
       <p><strong>Email:</strong> {student.email}</p>
       <p><strong>GPA:</strong> {student.gpa}</p>
+
+      <Link to={`/edit-student/${student.id}`}>
+        <button>Edit Student</button>
+      </Link>
+      <br/>
 
       <h2>Campus</h2>
       {student.campus ? (

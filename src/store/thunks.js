@@ -95,6 +95,7 @@ export const addStudentThunk = (student) => async (dispatch) => {  // The THUNK
     return res.data;
   } catch(err) {
     console.error(err);
+    throw err;
   }
 };
 

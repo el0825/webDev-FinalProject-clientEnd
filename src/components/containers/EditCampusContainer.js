@@ -25,9 +25,21 @@ class EditCampusContainer extends Component {
     };
   }
 
-  componentDidMount() {
+    componentDidMount() {
     const campusId = this.props.match.params.id;
+    
     this.props.fetchCampus(campusId);
+
+    if (this.props.campus && this.props.campus.id === Number(campusId)) {
+      const { name, address, description, imageUrl} = this.props.campus;
+      this.setState({
+        name: name || "",
+        address: address || "",
+        description: description || "",
+        imageUrl: imageUrl || "",
+        loadedFromCampus: true,
+      });
+    }
   }
 
   componentDidUpdate(prevProps) {
