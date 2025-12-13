@@ -94,10 +94,15 @@ const NewStudentView = (props) => {
             />
             <br />
             <br />
-
+          {/* Campus ID */}
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Campus Id: </label>
-            <input type="text" name="campusId" onChange={(e) => handleChange(e)} />
-            <br/>
+            <input
+                type="number"
+                name="campusId"
+                min="1"
+                onChange={(e) => handleChange(e)}
+              />
+
             <br/>
 
             <Button variant="contained" color="primary" type="submit">

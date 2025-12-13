@@ -49,7 +49,8 @@ class EditStudentContainer extends Component {
         email: email || "",
         imageUrl: imageUrl || "",
         gpa: gpa !== null && gpa !== undefined ? String(gpa) : "",
-        campusId: campusId || "",
+        campusId: campusId !== null && campusId !== undefined ? String(campusId) : "",
+
         loadedFromStudent: true,
       });
     }
@@ -74,7 +75,8 @@ class EditStudentContainer extends Component {
       email: this.state.email,
       imageUrl: this.state.imageUrl,
       gpa: this.state.gpa ? Number(this.state.gpa) : null,
-      campusId: this.state.campusId || null,
+     campusId: this.state.campusId === "" ? null : Number(this.state.campusId),
+
     };
 
     const result = await this.props.editStudent(updatedStudent);
