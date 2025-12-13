@@ -1,5 +1,5 @@
 /*==================================================
-EditCampusContainer.js
+EditStudentContainer.js
 
 Container for editing an existing campus.
 ================================================== */
@@ -20,6 +20,7 @@ class EditStudentContainer extends Component {
       email: "",
       imageUrl: "",
       gpa: 0,
+      campusId: "",
       loadedFromStudent: false,
       redirect: false,
       redirectId: null,
@@ -32,13 +33,14 @@ class EditStudentContainer extends Component {
     this.props.fetchStudent(studentId);
 
     if (this.props.student && this.props.student.id === Number(studentId)) {
-      const { firstname, lastname, email, imageUrl, gpa } = this.props.student;
+      const { firstname, lastname, email, imageUrl, gpa,campusId } = this.props.student;
       this.setState({
         firstname: firstname || "",
         lastname: lastname || "",
         email: email || "",
         imageUrl: imageUrl || "",
         gpa: gpa || 0,
+        campusId: campusId !== null && campusId !== undefined ? campusId : "",
         loadedFromStudent: true,
       });
     }
@@ -52,13 +54,14 @@ class EditStudentContainer extends Component {
       (!prevProps.student || prevProps.student.id !== this.props.student.id) &&
       !this.state.loadedFromStudent
     ) {
-      const { firstname, lastname, email, imageUrl,gpa } = this.props.student;
+      const { firstname, lastname, email, imageUrl,gpa, campusId } = this.props.student;
       this.setState({
         firstname: firstname || "",
         lastname: lastname || "",
         email: email || "",
         imageUrl: imageUrl || "",
         gpa: gpa || 0,
+        campusId: campusId !== null && campusId !== undefined ? String(campusId) : "",
         loadedFromStudent: true,
       });
     }
@@ -83,6 +86,7 @@ class EditStudentContainer extends Component {
       email: this.state.email,
       imageUrl: this.state.imageUrl,
       gpa: this.state.gpa,
+      campusId: this.state.campusId === "" ? null : Number(this.state.campusId),
     };
 
     const result = await this.props.editStudent(updatedStudent);
