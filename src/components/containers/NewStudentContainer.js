@@ -22,10 +22,11 @@ class NewStudentContainer extends Component {
       lastname: "",
       email: "",
       imageUrl: "",
-      gpa: "", 
+      gpa: 0, 
       campusId: null, 
       redirect: false, 
-      redirectId: null
+      redirectId: null,
+      errorMsg: null
     };
   }
 
@@ -49,20 +50,24 @@ class NewStudentContainer extends Component {
         gpa: this.state.gpa
     };
     
-    // Add new student in back-end database
-    let newStudent = await this.props.addStudent(student);
+    
+    try{
+      let newStudent = await this.props.addStudent(student);
 
-    // Update state, and trigger redirect to show the new student
-    this.setState({
-      firstname: "", 
-      lastname: "",
-      email: "",
-      imageUrl: "",
-      gpa: "", 
-      campusId: null, 
-      redirect: true, 
-      redirectId: newStudent.id
+      this.setState({
+        firstname: "", 
+        lastname: "",
+        email: "",
+        imageUrl: "",
+        gpa: 0, 
+        campusId: null, 
+        redirect: true, 
+        redirectId: newStudent.id
     });
+    }
+    catch (error){
+      this.setState({errorMsg: "CampusID does not exist"});
+    }
   }
 
   // Unmount when the component is being removed from the DOM:
@@ -84,6 +89,7 @@ class NewStudentContainer extends Component {
         <NewStudentView 
           handleChange = {this.handleChange} 
           handleSubmit={this.handleSubmit}      
+          errorMsg={this.state.errorMsg}
         />
       </div>          
     );
