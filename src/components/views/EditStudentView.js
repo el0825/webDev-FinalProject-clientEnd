@@ -68,7 +68,27 @@ const EditStudentView = (props) => {
             name="gpa"
             value={formValues.gpa}
             onChange={handleChange}
+            min ="0"
+            max= "4"
+            step="0.01"
             required
+          />
+        </div>
+        {(formValues.gpa < 0 || formValues.gpa > 4) && (
+          <p style={{ color: "red" }}>
+          GPA must be between 0.0 and 4.0
+        </p>
+        )}
+
+
+        <div>
+          <label>Campus ID: </label>
+          <input
+            type="number"
+            name="campusId"
+            value={formValues.campusId}
+            onChange={handleChange}
+            min="1"
           />
         </div>
 
@@ -87,6 +107,7 @@ EditStudentView.propTypes = {
     email: PropTypes.string,
     imageUrl: PropTypes.string,
     gpa: PropTypes.number,
+    campusId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
